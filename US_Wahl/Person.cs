@@ -23,7 +23,7 @@
             this.AltersGruppe = (Alter)rnd.Next(0, 5);
             this.ParteiGruppe = (Partei)rnd.Next(0, 2);
             this.SchichtGruppe = (Schicht)rnd.Next(0, 4);
-            this.BeeinflussungsGruppe = (Beeinflussbar)rnd.Next(0, 2);
+            this.BeeinflussungsGruppe = (Beeinflussbar)rnd.Next(0, 3);
         }
     }
 }

@@ -7,7 +7,8 @@
             //Console.WriteLine(Model.VornamenMaedchen.Count());
             //Console.WriteLine(Model.VornamenJungen.Count());
             //Console.WriteLine(Model.Personen.Count());
-            Model.ZeigeWahlvolk();
+            //Model.ZeigeWahlvolk();
+            Model.SichereDaten();
             
         }
     }
