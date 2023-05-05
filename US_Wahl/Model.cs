@@ -67,7 +67,7 @@ namespace US_Wahl {
             byte[] readBytes = new byte[fileLength];
             stream.Read(readBytes, 0, (int)fileLength);
             string readString = Encoding.Latin1.GetString(readBytes);
-            VornamenJungen = readString.Split(new[] { '\r', '\n' }).ToList();
+            VornamenJungen = readString.Split(new[] { '\n' }).ToList();
             stream.Close();
         }
         public static void FuelleVornamenMaedchen() {
@@ -76,7 +76,7 @@ namespace US_Wahl {
             byte[] readBytes = new byte[fileLength];
             stream.Read(readBytes, 0, (int)fileLength);
             string readString = Encoding.Latin1.GetString(readBytes);
-            VornamenMaedchen = readString.Split(new[] { '\r', '\n' }).ToList();
+            VornamenMaedchen = readString.Split(new[] { '\n' }).ToList();
             stream.Close();
         }
         public static void FuelleNachnamen() {
