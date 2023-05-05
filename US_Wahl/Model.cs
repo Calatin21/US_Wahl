@@ -14,7 +14,7 @@ namespace US_Wahl {
         public static void GeneriereWahlVolk(int x) {
             Random rnd = new();
             for (int i = 0; i < x; i++) {
-                Personen.Add(new Person(Nachnamen[i], Personen));
+                Personen.Add(new Person(Nachnamen[i], Personen.Count()));
             }
             foreach (Person item in Personen) {
                 if (item.GeschlechtsGruppe == (Geschlecht)0) {
@@ -36,14 +36,14 @@ namespace US_Wahl {
         }
         public static void SichereDaten() {
             FileStream outputStream = new("Wähler.csv", FileMode.OpenOrCreate, FileAccess.Write);
-            string message =  "ID;";
+            string message = "ID;";
             message += "Vorname;";
             message += "Nachname;";
             message += "Postleitzahl;";
             message += "Geschlecht;";
             message += "Alter;";
             message += "Parteizugehörigkeit;";
-            message += "Schicht;";                       
+            message += "Schicht;";
             message += "Beeinlfussbarkeit\n";
             foreach (Person item in Personen) {
                 message += item.ID.ToString() + ";";
@@ -55,41 +55,39 @@ namespace US_Wahl {
                 message += item.ParteiGruppe.ToString() + ";";
                 message += item.SchichtGruppe.ToString() + ";";
                 message += item.BeeinflussungsGruppe.ToString();
-                message += "\n";                             
+                message += "\n";
             }
             byte[] outputMessageBytes = Encoding.Latin1.GetBytes(message);
             outputStream.Write(outputMessageBytes, 0, outputMessageBytes.Length);
-            outputStream.Close();                
+            outputStream.Close();
         }
         public static void FuelleVornamenJungen() {
-                FileStream stream = new FileStream("jungennamen.txt", FileMode.Open, FileAccess.Read);
-                long fileLength = stream.Length;
-                byte[] readBytes = new byte[fileLength];
-                stream.Read(readBytes, 0, (int)fileLength);
-                string readString = Encoding.Latin1.GetString(readBytes);
-                List<string> line = readString.Split(new[] { '\r', '\n' }).ToList();
-                VornamenJungen = line;
-                stream.Close();
-            }
-            public static void FuelleVornamenMaedchen() {
-                FileStream stream = new FileStream("maedchennamen.txt", FileMode.Open, FileAccess.Read);
-                long fileLength = stream.Length;
-                byte[] readBytes = new byte[fileLength];
-                stream.Read(readBytes, 0, (int)fileLength);
-                string readString = Encoding.Latin1.GetString(readBytes);
-                List<string> line = readString.Split(new[] { '\r', '\n' }).ToList();
-                VornamenMaedchen = line;
-                stream.Close();
-            }
-            public static void FuelleNachnamen() {
-                FileStream stream = new FileStream("nachnamen.txt", FileMode.Open, FileAccess.Read);
-                long fileLength = stream.Length;
-                byte[] readBytes = new byte[fileLength];
-                stream.Read(readBytes, 0, (int)fileLength);
-                string readString = Encoding.Latin1.GetString(readBytes);
-                List<string> line = readString.Split(new[] { '\r', '\n' }).ToList();
-                Nachnamen = line;
-                stream.Close();
-            }
+            FileStream stream = new("jungennamen.txt", FileMode.Open, FileAccess.Read);
+            long fileLength = stream.Length;
+            byte[] readBytes = new byte[fileLength];
+            stream.Read(readBytes, 0, (int)fileLength);
+            string readString = Encoding.Latin1.GetString(readBytes);
+            VornamenJungen = readString.Split(new[] { '\r', '\n' }).ToList();
+            stream.Close();
+        }
+        public static void FuelleVornamenMaedchen() {
+            FileStream stream = new("maedchennamen.txt", FileMode.Open, FileAccess.Read);
+            long fileLength = stream.Length;
+            byte[] readBytes = new byte[fileLength];
+            stream.Read(readBytes, 0, (int)fileLength);
+            string readString = Encoding.Latin1.GetString(readBytes);
+            VornamenMaedchen = readString.Split(new[] { '\r', '\n' }).ToList();
+            stream.Close();
+        }
+        public static void FuelleNachnamen() {
+            FileStream stream = new("nachnamen.txt", FileMode.Open, FileAccess.Read);
+            long fileLength = stream.Length;
+            byte[] readBytes = new byte[fileLength];
+            stream.Read(readBytes, 0, (int)fileLength);
+            string readString = Encoding.Latin1.GetString(readBytes);
+            Nachnamen = readString.Split(new[] { '\r', '\n' }, StringSplitOptions.RemoveEmptyEntries).ToList();
+            stream.Close();
         }
     }
+}
+

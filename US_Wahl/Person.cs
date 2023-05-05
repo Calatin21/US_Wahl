@@ -14,9 +14,9 @@
         public Partei ParteiGruppe { get; set; }
         public Schicht SchichtGruppe { get; set; }
         public Beeinflussbar BeeinflussungsGruppe { get; set; }
-        public Person(string nachname, List<Person> Personen) {
+        public Person(string nachname, int zahl) {
             Random rnd = new();
-            this.ID = Personen.Count();
+            this.ID = zahl;
             this.Nachname = nachname;
             this.PLZ = rnd.Next(10000, 100000);
             this.GeschlechtsGruppe = (Geschlecht)rnd.Next(0, 2);

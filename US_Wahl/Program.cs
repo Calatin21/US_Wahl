@@ -9,7 +9,7 @@
             //Console.WriteLine(Model.Personen.Count());
             //Model.ZeigeWahlvolk();
             Model.SichereDaten();
-            
+
         }
     }
 }
